@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diddly Dipsum</title>
+</head>
+<body>
+  <h1>Hiddly ho</h1>
+  <input type="text" class="js-input" name="numRequested" />
+  <button class="js-do">Click me</button>
+  <script>
+    let numRequested;
+    let button = document.getElementsByClassName('js-do')[0];
+
+    /**
+     * Make the request for diddly dipsum when the button is clicked.
+     */
+    button.addEventListener('click', function() {
+      // Get the value from the input
+      numRequested = parseInt(document.getElementsByClassName('js-input')[0].value);
+
+      // Check value
+      if( Number.isInteger(numRequested) && numRequested > 0 ) {
+        console.log('Number is good');
+        requestDiddlyDoodlies(numRequested);
+      } else {
+        console.warn('Number is bad');
+      }
+    });
+
+    /**
+     * Request the diddly dipsum from the server
+     * @param  {integer} numDiddlies Number of paragraphs requested.
+     * @return {string}              String of paragraphs of diddly dipsum.
+     */
+    let requestDiddlyDoodlies = function(numDiddlies) {
+      httpRequest = new XMLHttpRequest();
+      httpRequest.onreadystatechange = function(){
+          // process the server response
+          console.log('Worked');
+      };
+      httpRequest.open('GET', 'http://localhost:8080/diddlies', true);
+      httpRequest.send(null);
+    };
+  </script>
+</body>
+</html>
