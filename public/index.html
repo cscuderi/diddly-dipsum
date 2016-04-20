@@ -35,10 +35,13 @@
     let requestDiddlyDoodlies = function(numDiddlies) {
       httpRequest = new XMLHttpRequest();
       httpRequest.onreadystatechange = function(){
-          // process the server response
-          console.log('Worked');
+        if (httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200) {
+          // everything is good, the response is received
+          alert(httpRequest.responseText);
+        }
+        // process the server response
       };
-      httpRequest.open('GET', 'http://localhost:8080/diddlies', true);
+      httpRequest.open('GET', 'http://127.0.0.1/diddlies', true);
       httpRequest.send(null);
     };
   </script>

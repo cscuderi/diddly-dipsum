@@ -1,8 +1,9 @@
 require 'sinatra'
 require 'JSON'
 
-set :port, 8080
-set :environment, :production
+set :port, 80
+set :environment, :development
+set :public_folder, 'public'
 
 
 # √ 1. Build a 'database' of strings in Flanders' talk
@@ -38,7 +39,12 @@ end
 
 Diddly = DiddlyServer.new
 
-get '/diddlies' do
+
+get '/' do
+  redirect './index.html'
+end
+
+get '/diddlies/:num' do
   return 'Heard you'
   # Diddly.initialize
 end
