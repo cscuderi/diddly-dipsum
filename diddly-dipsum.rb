@@ -8,11 +8,11 @@ set :public_folder, 'public'
 # [√] Build a 'database' of strings in Flanders' talk
 # [√] Prompt user for how many paragraphs of Flanders they want
 # [√] Receive the variable in Ruby
-# [ ] Build paragraphs by pulling strings from the database at random
-# [ ] Add random dashes between words instead of spaces
-# [ ] Cap paragraphs at 40 words, 55 words or 70 words (randomly)
-# [ ] Count up until we have the number of paragraphs requested
-# [ ] Return the paragraphs (JSON)
+# [√] Build paragraphs by pulling strings from the database at random
+# [√] Add random dashes between words instead of spaces
+# [√] Cap paragraphs at 40 words, 55 words or 70 words (randomly)
+# [√] Count up until we have the number of paragraphs requested
+# [√] Return the paragraphs
 
 class Flanders
   attr_reader :doodlies, :response
