@@ -5,39 +5,38 @@ set :port, 80
 set :environment, :development
 set :public_folder, 'public'
 
-
-# √ 1. Build a 'database' of strings in Flanders' talk
-# √ 2. Prompt user for how many paragraphs of Flanders they want
-#   3. Build paragraphs by pulling strings from the database at random
-#   3.5 Add random dashes between words instead of spaces
-#   4. Cap paragraphs at 40 words, 55 words or 70 words (randomly)
-#   5. Count up until we have the number of paragraphs requested
-#   6. Return the paragraphs
+# [√] Build a 'database' of strings in Flanders' talk
+# [√] Prompt user for how many paragraphs of Flanders they want
+# [√] Receive the variable in Ruby
+# [ ] Build paragraphs by pulling strings from the database at random
+# [ ] Add random dashes between words instead of spaces
+# [ ] Cap paragraphs at 40 words, 55 words or 70 words (randomly)
+# [ ] Count up until we have the number of paragraphs requested
+# [ ] Return the paragraphs (JSON)
 
 class DiddlyServer
-  doodlies = ['okey', 'dokey', 'dokelees', 'dandy', 'diddly', 'di', 'do', 'iddly', 'ho', 'neighborino', 'ding', 'dong', 'bitty', 'arky', 'twosies', 'purple drapes', 'fella', 'doodly', 'oodly', 'doddily', 'shoodily', 'dahdilly', 'okelly', 'dokely']
+  attr_reader :doodlies
 
-  # Verify the input and route the call
-  def initialize
-    # Get the number of requested paragraphs here!
+  def initialize(num_doodlies)
     return 'Hi neighborino!'
+    @doodlies = ['okey', 'dokey', 'dokelees', 'dandy', 'diddly', 'di', 'do', 'iddly', 'ho', 'neighborino', 'ding', 'dong', 'bitty', 'arky', 'twosies', 'purple drapes', 'fella', 'doodly', 'oodly', 'doddily', 'shoodily', 'dahdilly', 'okelly', 'dokely']
+    # Get the number of requested paragraphs here!
   end
 
   # Build the paragraphs of text
-  def getDoodlies(numRequested)
-    counter = 0
-    response = ''
+  # def getDoodlies(numRequested)
+  #   counter = 0
+  #   response = ''
 
-    until counter == numRequested do
-      response += doodlies[rand(doodlies.length)]
-      counter += 1
-    end
+  #   until counter == numRequested do
+  #     response += doodlies[rand(doodlies.length)] + ' '
+  #     counter += 1
+  #   end
 
-    return response
-  end
+  #   return response
+  # end
+
 end
-
-Diddly = DiddlyServer.new
 
 
 get '/' do
@@ -45,6 +44,11 @@ get '/' do
 end
 
 get '/diddlies/:num' do
-  return 'Heard you'
-  # Diddly.initialize
+  number_of_diddlies = params[:num].to_i
+
+  unless (number_of_diddlies.is_a? Numeric) && (number_of_diddlies > 0)
+    return "Bad input. Number is negative or not a number."
+  end
+
+  MyDiddly = DiddlyServer.new(number_of_diddlies)
 end

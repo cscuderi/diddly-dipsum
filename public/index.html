@@ -24,6 +24,7 @@
         requestDiddlyDoodlies(numRequested);
       } else {
         console.warn('Number is bad');
+        return false;
       }
     });
 
@@ -41,7 +42,7 @@
         }
         // process the server response
       };
-      httpRequest.open('GET', 'http://127.0.0.1/diddlies', true);
+      httpRequest.open('GET', 'http://127.0.0.1/diddlies/' + numDiddlies, true);
       httpRequest.send(null);
     };
   </script>
