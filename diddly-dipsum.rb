@@ -14,30 +14,81 @@ set :public_folder, 'public'
 # [ ] Count up until we have the number of paragraphs requested
 # [ ] Return the paragraphs (JSON)
 
-class DiddlyServer
-  attr_reader :doodlies
+class Flanders
+  attr_reader :doodlies, :response
 
-  def initialize(num_doodlies)
-    return 'Hi neighborino!'
-    @doodlies = ['okey', 'dokey', 'dokelees', 'dandy', 'diddly', 'di', 'do', 'iddly', 'ho', 'neighborino', 'ding', 'dong', 'bitty', 'arky', 'twosies', 'purple drapes', 'fella', 'doodly', 'oodly', 'doddily', 'shoodily', 'dahdilly', 'okelly', 'dokely']
-    # Get the number of requested paragraphs here!
+  def initialize
+    @doodlies = ['arky','bitty','dahdilly','dandy','dang','di','diddly','ding','do','doddily','dokelees','dokely','dokey','dong','doodly','fella','hiddly','ho','iddly','lefty','lordy','moodly','neighborino','o','okelly','okey','oodly','purple drapes','shoodily','twosies']
   end
 
   # Build the paragraphs of text
-  # def getDoodlies(numRequested)
-  #   counter = 0
-  #   response = ''
+  def getDoodlies(num_doodlies)
+    response = 'Why, hiddly-ho, neighborino! '
+    paragraphs = ''
+    sentence = ''
 
-  #   until counter == numRequested do
-  #     response += doodlies[rand(doodlies.length)] + ' '
-  #     counter += 1
-  #   end
+    # Until we reach the requested amount of paragraphs...
+    num_doodlies.times do
 
-  #   return response
-  # end
+      # Setup paragraphs
+      # Reset, then loop 1-3 sentences per paragraph
+      paragraphs = ''
+      rand(1..3).times do
 
+        # Setup sentences
+        # Reset sentence, then loop 15-25 words per sentence
+        sentence = ''
+
+        capitalize_next_word = false
+
+        words_per_sentence = rand(15..25)
+
+        until words_per_sentence == 0 do
+          word = ''
+          word << @doodlies[rand(@doodlies.length)]
+
+          # TODO Figure out why , and - can appear at end of sentences
+          if words_per_sentence > 1
+
+            # Add punctuation or spaces
+            random_num = rand(1..10)
+
+            if random_num == 2 && words_per_sentence > 5
+              word << ', '
+            elsif random_num % 2 == 0
+              word << '-'
+            else
+              word << ' '
+            end
+
+          end
+
+          # word << "#{x}"
+          sentence << word
+          words_per_sentence -= 1
+        end
+
+        if rand(1..10) == 1
+          sentence << '! '
+        else
+          sentence << '. '
+        end
+
+        sentence.capitalize!
+
+        paragraphs << sentence
+      end
+
+      # End of paragraph
+      paragraphs << "\n\n"
+      response << paragraphs
+    end
+
+    return response
+  end
 end
 
+# Neighbour = Flanders.new
 
 get '/' do
   redirect './index.html'
@@ -47,8 +98,11 @@ get '/diddlies/:num' do
   number_of_diddlies = params[:num].to_i
 
   unless (number_of_diddlies.is_a? Numeric) && (number_of_diddlies > 0)
-    return "Bad input. Number is negative or not a number."
+    return "Oopsie-doopsie, fella. Either that isn't a number or it's a tad smaller than one."
   end
 
-  MyDiddly = DiddlyServer.new(number_of_diddlies)
+  Neighbour = Flanders.new
+  return Neighbour.getDoodlies(number_of_diddlies)
+
+  200
 end
