@@ -2,59 +2,73 @@ class Flanders
   attr_reader :doodlies, :response
 
   def initialize
-    @doodlies = ['arky','bitty','dahdilly','dandy','dang','di','diddly','ding','do','doddily','dokelees','dokely','dokey','dong','doodly','fella','hiddly','ho','iddly','moodly','neighborino','okelly','okey','oodly','purple drapes','shoodily','twosies']
-    @response = ''
+    @doodlies = ['arky','bitty','dahdilly','dandy','dang','di','diddly','ding','do','doddily','dokelees','dokely','dokey','dong','doodly','fella','hiddly','ho','iddly','lefty','lordy','moodly','neighborino','o','okelly','okey','oodly','purple drapes','shoodily','twosies']
   end
 
   # Build the paragraphs of text
   def getDoodlies(num_doodlies)
+    response = 'Why, hiddly-ho, neighborino! '
+    paragraphs = ''
+    sentence = ''
 
     # Until we reach the requested amount of paragraphs...
     num_doodlies.times do
 
-      paragraph = ''
+      # Setup paragraphs
+      # Reset, then loop 1-3 sentences per paragraph
+      paragraphs = ''
+      rand(1..3).times do
 
-      # Setup paragraph length
-      paragraph_sentence_count = rand(1..3)
-      paragraph_sentence_count.times do
-
+        # Setup sentences
+        # Reset sentence, then loop 15-25 words per sentence
         sentence = ''
 
-        # Setup sentence word length
-        sentence_word_count = rand(15..25)
-        sentence_word_count.times do
+        capitalize_next_word = false
 
-          sentence << @doodlies[rand(@doodlies.length)]
+        words_per_sentence = rand(15..25)
 
-          # Add punctuation or spaces
-          random_num = rand(1..10)
+        until words_per_sentence == 0 do
+          word = ''
+          word << @doodlies[rand(@doodlies.length)]
 
-          if random_num == 1
-            sentence << '.'
-            sentence.capitalize
+          # TODO Figure out why , and - can appear at end of sentences
+          if words_per_sentence > 1
 
-          elsif random_num == 2
-            sentence << ','
+            # Add punctuation or spaces
+            random_num = rand(1..10)
 
-          elsif random_num == 3
-            sentence << '!'
-            sentence.capitalize
+            if random_num == 2 && words_per_sentence > 5
+              word << ', '
+            elsif random_num % 2 == 0
+              word << '-'
+            else
+              word << ' '
+            end
+
           end
 
-          sentence << ' '
+          # word << "#{x}"
+          sentence << word
+          words_per_sentence -= 1
         end
 
-        paragraph << sentence
-        # @response << response_string
-        @response << paragraph
+        if rand(1..10) == 1
+          sentence << '! '
+        else
+          sentence << '. '
+        end
+
+        sentence.capitalize!
+
+        paragraphs << sentence
       end
 
       # End of paragraph
-      @response << "\n\n"
-
+      paragraphs << "\n\n"
+      response << paragraphs
     end
 
-    puts @response
+    puts response
   end
 end
 
