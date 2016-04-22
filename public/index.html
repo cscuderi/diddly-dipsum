@@ -1,50 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Diddly Dipsum</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Need to talk like Flanders? Step on up neighborino!">
+  <title>Diddly Dipsum: The Flanders lorem ipsum generator that the world deserves</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <h1>Hiddly ho</h1>
-  <input type="text" class="js-input" name="numRequested" />
-  <button class="js-do">Click me</button>
-  <script>
-    let numRequested;
-    let button = document.getElementsByClassName('js-do')[0];
+  <main class="main">
 
-    /**
-     * Make the request for diddly dipsum when the button is clicked.
-     */
-    button.addEventListener('click', function() {
-      // Get the value from the input
-      numRequested = parseInt(document.getElementsByClassName('js-input')[0].value);
+    <h1>Diddly Dipsum<sup>TM</sup></h1>
 
-      // Check value
-      if( Number.isInteger(numRequested) && numRequested > 0 ) {
-        console.log('Number is good');
-        requestDiddlyDoodlies(numRequested);
-      } else {
-        console.warn('Number is bad');
-        return false;
-      }
-    });
+    <div class="content-wrapper">
+      <p><strong>Hiddly-ho there, neighborino!</strong></p>
 
-    /**
-     * Request the diddly dipsum from the server
-     * @param  {integer} numDiddlies Number of paragraphs requested.
-     * @return {string}              String of paragraphs of diddly dipsum.
-     */
-    let requestDiddlyDoodlies = function(numDiddlies) {
-      httpRequest = new XMLHttpRequest();
-      httpRequest.onreadystatechange = function(){
-        if (httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200) {
-          // everything is good, the response is received
-          alert(httpRequest.responseText);
-        }
-        // process the server response
-      };
-      httpRequest.open('GET', 'http://127.0.0.1/diddlies/' + numDiddlies, true);
-      httpRequest.send(null);
-    };
-  </script>
+      <form action="" method="get" accept-charset="utf-8">
+        <label for="diddly-input">How many <u>paragraphs</u> of text-eroony can I interest ya in?</label>
+        <input id="diddly-input" type="text" class="js-input" name="diddly-input" placeholder="0" />
+        <button type="submit" value="Diddly" class="js-do" >Get diddlin'</button>
+      </form>
+    </div>
+
+    <div class="output js-output" contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
+
+    <div class="flanders-frame">
+      <img class="flanders" src="img/flanders.svg" alt="">
+    </div>
+
+  </main>
+  <script src="scripts.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 </html>

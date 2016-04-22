@@ -8,3 +8,6 @@ TODOs
 [√] Build the Ruby response app
 [√] Test values
 [√] Simpons-ify the UI
+[ ] A11y
+[ ] Make responsive
+[ ] Fully comment Ruby/JS

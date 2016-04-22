@@ -18,21 +18,23 @@ class Flanders
   attr_reader :doodlies, :response
 
   def initialize
-    @doodlies = ['arky','bitty','dahdilly','dandy','dang','di','diddly','ding','do','doddily','dokelees','dokely','dokey','dong','doodly','fella','hiddly','ho','iddly','lefty','lordy','moodly','neighborino','o','okelly','okey','oodly','purple drapes','shoodily','twosies']
+    @doodlies = ['arky','bitty','dahdilly','dandy','dang','di','diddly','dilly','ding','do','doddily','dokelees','dokely','dokey','dong','doodle','doodly','fella','hiddly','ho','iddly','kiddly','lefty','lordy','moodly','neighborino','o','okaley','okey','oodly','purple drapes','shoodily','tizzy','twosies', 'woodely']
   end
 
   # Build the paragraphs of text
   def getDoodlies(num_doodlies)
-    response = 'Why, hiddly-ho, neighborino! '
+    response = ''
     paragraphs = ''
     sentence = ''
+    first_para = true
 
     # Until we reach the requested amount of paragraphs...
     num_doodlies.times do
 
       # Setup paragraphs
       # Reset, then loop 1-3 sentences per paragraph
-      paragraphs = ''
+
+      paragraphs = '<p>'
       rand(1..3).times do
 
         # Setup sentences
@@ -47,7 +49,6 @@ class Flanders
           word = ''
           word << @doodlies[rand(@doodlies.length)]
 
-          # TODO Figure out why , and - can appear at end of sentences
           if words_per_sentence > 1
 
             # Add punctuation or spaces
@@ -60,10 +61,8 @@ class Flanders
             else
               word << ' '
             end
-
           end
 
-          # word << "#{x}"
           sentence << word
           words_per_sentence -= 1
         end
@@ -75,20 +74,17 @@ class Flanders
         end
 
         sentence.capitalize!
-
         paragraphs << sentence
       end
 
       # End of paragraph
-      paragraphs << "\n\n"
+      paragraphs << "</p>"
       response << paragraphs
     end
 
     return response
   end
 end
-
-# Neighbour = Flanders.new
 
 get '/' do
   redirect './index.html'
@@ -98,10 +94,10 @@ get '/diddlies/:num' do
   number_of_diddlies = params[:num].to_i
 
   unless (number_of_diddlies.is_a? Numeric) && (number_of_diddlies > 0)
-    return "Oopsie-doopsie, fella. Either that isn't a number or it's a tad smaller than one."
+    return "Oopsie-doopsie, fella. Either that isn't a number or it's a tilly smaller than the number 1."
   end
 
-  Neighbour = Flanders.new
+  Neighbour ||= Flanders.new
   return Neighbour.getDoodlies(number_of_diddlies)
 
   200

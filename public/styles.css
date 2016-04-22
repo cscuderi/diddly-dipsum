@@ -1,0 +1,365 @@
+@font-face {
+  font-family: 'Simpsons';
+  src: url('fonts/simpsons.eot');
+  src: url('fonts/simpsons.eot?#iefix') format('embedded-opentype'),
+  url('fonts/simpsons.woff2') format('woff2'),
+  url('fonts/simpsons.woff') format('woff'),
+  url('fonts/simpsons.ttf') format('truetype'),
+  url('fonts/simpsons.svg#simpsons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  background-color: rgba(250, 212, 41, 1);
+  background: url(img/bg.jpg) repeat;
+  transition: .5s;
+}
+
+body {
+  font-family: 'Comic Sans', 'Comic Sans MS', cursive;
+  color: #333;
+}
+
+h1 {
+  display: inline-block;
+  position: relative;
+  font-family: 'Simpsons', Arial, sans-serif;
+  font-size: 7rem;
+  color: rgba(249, 252, 0, 1);
+  margin: 25px 0 0 0;
+  text-shadow: 3px 3px 0 rgba(0,0,0,1);
+}
+
+h1 sup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font: normal normal normal 1rem/1.5rem Arial, sans-serif;
+  text-shadow: none;
+  color: #222;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+p:after {
+  content: '';
+  display: block;
+  margin: 25px auto 0 auto;
+  width: 200px;
+  border-top: 1px solid white;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content-wrapper {
+  background: rgba(255,255,255,.1);
+  padding: 15px;
+  max-width: 500px;
+  margin: 25px auto 0 auto;
+}
+
+label {
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  padding: 15px;
+  font-size: 3rem;
+  font-family: 'Comic Sans', 'Comic Sans MS', cursive;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 3px 0 rgba(0,0,0,1);
+  text-align: center;
+  width: 100px;
+}
+
+input[type="text"]:focus {
+  outline: 2px solid red;
+  outline-offset: 5px;
+}
+
+button[type="submit"] {
+  display: block;
+  margin: 20px auto 0 auto;
+  max-width: 200px;
+  font: normal normal normal 1.5rem/1.5rem 'Comic Sans', 'Comic Sans MS', cursive;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: #222;
+  color: white;
+  padding: 15px;
+  border: none;
+}
+
+.output {
+  opacity: 0;
+  text-align: left;
+  border-radius: 10px;
+  background: white;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 25px;
+  transform: translateY(20px);
+  transition: .5s;
+}
+
+.output:focus {
+  outline: 2px solid red;
+  outline-offset: 5px;
+}
+
+.output.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.output.is-visible:before {
+  content: 'cmd-c or ctrl-c to copy to clipboard';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 15px;
+  width: 300px;
+  background: rgba(249, 252, 0, 1);
+  border-radius: 5px;
+  border-bottom: 2px solid #444;
+}
+
+.flanders-frame {
+  position: fixed;
+  bottom: -100%;
+  left: -250px;
+  display: block;
+  width: 550px;
+  height: 750px;
+  overflow: hidden;
+  will-change: transform, bottom;
+  animation: flanders-in 4s forwards;
+  animation-delay: .5s;
+}
+
+.loaded .flanders-frame {
+  animation: flanders-out .5s forwards;
+}
+
+.flanders {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+}
+
+@media screen and (max-width: 960px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h1 sup {
+    top: -10px;
+    right: -15px;
+  }
+
+  form {
+    position: relative;
+    z-index: 10;
+  }
+
+  .flanders-frame {
+    width: 300px;
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .flanders-frame {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  h1 sup {
+    right: 25px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .flanders-frame {
+    transform: rotate(90deg);
+    bottom: -50%;
+    left: -95%;
+    animation: none;
+  }
+}
+
+@media screen and (max-height: 599px) {
+  .flanders-frame {
+    display: none;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  /* Make Flanders pop in, walk left to right off-screen, then
+     loop back around and pop in on the left side */
+  @keyframes flanders-in {
+    0% {
+      bottom: -40%;
+      transform: translateY(100%) translateX(0);
+    }
+    15% {
+      transform: translateX(20vw) translateY(-25px);
+    }
+    20% {
+      transform: translateX(30vw) translateY(0);
+    }
+    25% {
+      transform: translateX(40vw) translateY(-25px);
+    }
+    30% {
+      transform: translateX(50vw) translateY(0px);
+    }
+    35% {
+      transform: translateX(60vw) translateY(-25px);
+    }
+    40% {
+      transform: translateX(70vw) translateY(0);
+    }
+    45% {
+      transform: translateX(80vw) translateY(-25px);
+    }
+    50% {
+      transform: translateX(90vw) translateY(0);
+    }
+    55% {
+      transform: translateX(100vw) translateY(-25px);
+    }
+    60% {
+      transform: translateX(110vw) translateY(0);
+    }
+    65% {
+      bottom: -40%;
+      transform: translateX(calc(120vw + 100%)) translateY(0);
+    }
+    66% {
+      transform: translateY(200%);
+    }
+    75% {
+      transform: translateX(0) rotate(35deg);
+    }
+    96% {
+      bottom: -40%;
+      left: -100px;
+    }
+    100% {
+      bottom: -40%;
+      left: -100px;
+      transform: translateY(0) rotate(35deg);
+    }
+  }
+
+  /* Hide Flanders when the text is loaded so he doesn't
+     block the view */
+  @keyframes flanders-out {
+    0% {
+      bottom: -40%;
+      left: -100px;
+      transform: translateY(0) rotate(35deg);
+    }
+    100% {
+      bottom: -120%;
+      left: -100%;
+      transform: translateY(-100%) rotate(0);
+    }
+  }
+}
+
+@media screen and (max-height: 699px) {
+  /* Make Flanders pop in, walk left to right off-screen, then
+     loop back around and pop in on the left side */
+  @keyframes flanders-in {
+    0% {
+      bottom: -55%;
+      transform: translateY(100%) translateX(0);
+    }
+    15% {
+      transform: translateX(20vw) translateY(-25px);
+    }
+    20% {
+      transform: translateX(30vw) translateY(0);
+    }
+    25% {
+      transform: translateX(40vw) translateY(-25px);
+    }
+    30% {
+      transform: translateX(50vw) translateY(0px);
+    }
+    35% {
+      transform: translateX(60vw) translateY(-25px);
+    }
+    40% {
+      transform: translateX(70vw) translateY(0);
+    }
+    45% {
+      transform: translateX(80vw) translateY(-25px);
+    }
+    50% {
+      transform: translateX(90vw) translateY(0);
+    }
+    55% {
+      transform: translateX(100vw) translateY(-25px);
+    }
+    60% {
+      transform: translateX(110vw) translateY(0);
+    }
+    65% {
+      bottom: -55%;
+      transform: translateX(calc(120vw + 100%)) translateY(0);
+    }
+    66% {
+      transform: translateY(200%);
+    }
+    75% {
+      transform: translateX(0) rotate(35deg);
+    }
+    96% {
+      bottom: -55%;
+      left: -100px;
+    }
+    100% {
+      bottom: -55%;
+      left: -100px;
+      transform: translateY(0) rotate(35deg);
+    }
+  }
+
+  /* Hide Flanders when the text is loaded so he doesn't
+     block the view */
+  @keyframes flanders-out {
+    0% {
+      bottom: -55%;
+      left: -100px;
+      transform: translateY(0) rotate(35deg);
+    }
+    100% {
+      bottom: -120%;
+      left: -100%;
+      transform: translateY(-100%) rotate(0);
+    }
+  }
+}
+
+
+
+
