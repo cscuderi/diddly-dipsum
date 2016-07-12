@@ -9,13 +9,3 @@ No front-end dependencies.
 
 Not tested outside of Chrome (yet).
 
-TODOs
-[√] Get the AJAX call going
-[√] See the response text
-[√] Build the Ruby response app
-[√] Test values
-[√] Simpons-ify the UI
-[ ] A11y
-[ ] Make responsive
-[ ] Fully comment Ruby/JS
-
