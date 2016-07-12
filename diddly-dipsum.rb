@@ -26,34 +26,31 @@ class Flanders
     response = ''
     paragraphs = ''
     sentence = ''
-    first_para = true
 
     # Until we reach the requested amount of paragraphs...
     num_doodlies.times do
 
       # Setup paragraphs
-      # Reset, then loop 1-3 sentences per paragraph
-
       paragraphs = '<p>'
+
+      # How many sentences per paragraph?
       rand(1..3).times do
 
         # Setup sentences
-        # Reset sentence, then loop 15-25 words per sentence
         sentence = ''
 
-        capitalize_next_word = false
-
+        # How many words per sentence?
         words_per_sentence = rand(15..25)
 
         until words_per_sentence == 0 do
           word = ''
           word << @doodlies[rand(@doodlies.length)]
 
+          # Add semi-random punctuation or spaces
+          # Make sure we're not on the last word
           if words_per_sentence > 1
 
-            # Add punctuation or spaces
             random_num = rand(1..10)
-
             if random_num == 2 && words_per_sentence > 5
               word << ', '
             elsif random_num % 2 == 0
@@ -67,6 +64,7 @@ class Flanders
           words_per_sentence -= 1
         end
 
+        # Add ! or . to end of sentence
         if rand(1..10) == 1
           sentence << '! '
         else
@@ -98,7 +96,5 @@ get '/diddlies/:num' do
   end
 
   Neighbour ||= Flanders.new
-  return Neighbour.getDoodlies(number_of_diddlies)
-
-  200
+  Neighbour.getDoodlies(number_of_diddlies)
 end

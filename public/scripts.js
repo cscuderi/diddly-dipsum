@@ -10,7 +10,7 @@
 
   /**
    * Validate input and call AJAX function when the button
-   * is clicked.
+   * is clicked. Calls requestDiddlyDoodlies()
    * @return {N/A}
    */
   let buttonClickHandler = function() {

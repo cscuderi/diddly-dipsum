@@ -13,7 +13,6 @@
 html {
   background-color: rgba(250, 212, 41, 1);
   background: url(img/bg.jpg) repeat;
-  transition: .5s;
 }
 
 body {
@@ -195,14 +194,14 @@ button[type="submit"] {
   }
 }
 
-@media screen and (max-height: 600px) {
+/* @media screen and (max-height: 600px) {
   .flanders-frame {
     transform: rotate(90deg);
     bottom: -50%;
     left: -95%;
     animation: none;
   }
-}
+} */
 
 @media screen and (max-height: 599px) {
   .flanders-frame {
