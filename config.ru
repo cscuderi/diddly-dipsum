@@ -1,2 +1,2 @@
 require './diddly-dipsum'
-run Sinatra::Application
+# run Sinatra::Application
