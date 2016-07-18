@@ -1,1 +1,1 @@
-web: bundle exec ruby diddly-dipsum.ru -p $PORT
+web: bundle exec ruby diddly-dipsum.rb -p $PORT
