@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'json'
 
-# set :port, 80
 set :environment, :production
 set :public_folder, './public'
 
