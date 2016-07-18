@@ -2,7 +2,7 @@ require 'sinatra'
 require 'JSON'
 
 set :port, 80
-set :environment, :development
+set :environment, :production
 set :public_folder, 'public'
 
 # [√] Build a 'database' of strings in Flanders' talk
