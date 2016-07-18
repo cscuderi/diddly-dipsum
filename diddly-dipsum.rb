@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'JSON'
+require 'json'
 
 set :port, 80
 set :environment, :production
