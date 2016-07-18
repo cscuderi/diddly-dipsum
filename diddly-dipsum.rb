@@ -1,9 +1,9 @@
 require 'sinatra'
 require 'json'
 
-set :port, 80
+# set :port, 80
 set :environment, :production
-set :public_folder, 'public'
+set :public_folder, './public'
 
 # [√] Build a 'database' of strings in Flanders' talk
 # [√] Prompt user for how many paragraphs of Flanders they want
