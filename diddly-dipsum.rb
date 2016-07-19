@@ -83,10 +83,12 @@ class Flanders
   end
 end
 
+# Root
 get '/' do
   redirect './index.html'
 end
 
+# API
 get '/diddlies/:num' do
   number_of_diddlies = params[:num].to_i
 

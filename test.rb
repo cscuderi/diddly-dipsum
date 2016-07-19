@@ -1,3 +1,5 @@
+# Test file so I don't have to keep restarting Sinatra.
+
 class Flanders
   attr_reader :doodlies, :response
 
