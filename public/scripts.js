@@ -66,7 +66,7 @@
     };
 
     // Make the AJAX request to get the text
-    httpRequest.open('GET', 'https://diddly-dipsum.herokuapp.com/diddlies/' + numDiddlies, true);
+    httpRequest.open('GET', '//diddly-dipsum.herokuapp.com/diddlies/' + numDiddlies, true);
     httpRequest.send(null);
   };
 
