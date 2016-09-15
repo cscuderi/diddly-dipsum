@@ -15,10 +15,10 @@
    */
   let buttonClickHandler = function() {
     let numRequested;
-    let button = document.getElementsByClassName('js-do')[0];
+    let form = document.getElementsByClassName('js-do')[0];
 
      // Make the request for diddly dipsum when the button is clicked.
-     button.addEventListener('click', function(e) {
+     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
       // Get the value from the input
