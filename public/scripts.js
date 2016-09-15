@@ -31,8 +31,9 @@
       } else {
         console.warn('💩 Input is bad');
         alert('Gonna need a number from you!');
-        return false;
       }
+
+      return false;
     });
   };
 
